@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+//Custom Hooks
+import { useInterval } from "../../hooks/useInterval";
 import { useStage } from "../../hooks/useStage";
 import { usePlayer } from "../../hooks/usePlayer";
 
@@ -27,6 +29,7 @@ const Tetris = ({ callback }) => {
   const startGame = () => {
     //reset everything
     setStage(createStage());
+    setDropTime(500);
     resetPlayer();
     setGameOver(false);
   };
@@ -44,7 +47,16 @@ const Tetris = ({ callback }) => {
     }
   };
 
+  const keyUp = ({ keyCode }) => {
+    if (!gameOver) {
+      if (keyCode === 40) {
+        setDropTime(500);
+      }
+    }
+  };
+  
   const dropPlayer = () => {
+    setDropTime(null);
     drop();
   };
 
@@ -56,14 +68,23 @@ const Tetris = ({ callback }) => {
         movePlayer(1);
       } else if (keyCode === 40) {
         dropPlayer();
-      }else if( keyCode ===38){
-        playerRotate(stage, 1)
+      } else if (keyCode === 38) {
+        playerRotate(stage, 1);
       }
     }
   };
 
+  useInterval(() => {
+    drop();
+  }, dropTime);
+
   return (
-    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)}>
+    <StyledTetrisWrapper
+      role="button"
+      tabIndex="0"
+      onKeyDown={e => move(e)}
+      onKeyUp={keyUp}
+    >
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
