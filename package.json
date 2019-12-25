@@ -1,6 +1,7 @@
 {
   "name": "react-tetris",
   "version": "0.1.0",
+  "homepage": "https://anasbajjouk.github.io/react-tetrominos/",
   "private": true,
   "dependencies": {
     "react": "^16.12.0",
