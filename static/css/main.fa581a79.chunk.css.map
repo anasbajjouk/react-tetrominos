@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,2BAKE,QAAS,CACT,iBAAoB,CACpB,cAAe,CACf,qBACF","file":"main.fa581a79.chunk.css","sourcesContent":["*,\n*::after,\n*::before,\nbody,\nhtml {\n  margin: 0;\n  font-family: 'VT323';\n  font-size: 100%;\n  box-sizing: border-box;\n}"]}
